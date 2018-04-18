@@ -1,0 +1,27 @@
+.container
+  .row{ style: "margin-bottom: 20px; margin-top: 20px;"}
+    .col-md-4
+      %h1 New Composition
+    .col-md-2
+      %a{ href: "#{compositions_path}"}
+        %button.btn.btn-primary
+          All Compositions
+    .col-md-5
+  .row
+    .col-md-5
+      = simple_form_for Composition.new do |f|
+        .form-group
+          = f.input :title, label: 'Title',  input_html: { id: 'title', class: 'form-control' }
+        .form-group
+          = f.input :schedule, label: 'Schedule',  input_html: { id: 'schedule', class: 'form-control' }
+        .form-group
+          %label Start Date
+          = f.text_field :start_date, id: 'start_date', type: 'text', class: 'form-control datepicker'
+        .form-group
+          %label End Date
+          = f.text_field :end_date, id: 'end_date', type: 'text', class: 'form-control datepicker'
+        .form-group
+          = f.input :client_name, label: 'Client Name',  input_html: { id: 'client_name', class: 'form-control' }
+        .form-group
+          = f.submit 'Submit', class: 'btn btn-primary'
+

@@ -1,0 +1,41 @@
+.container
+  .row{ style: "margin-bottom: 20px; margin-top: 20px;"}
+    .col-md-3
+      %h1 Compositions
+    .col-md-2
+      %a{ href: "#{new_composition_path}"}
+        %button.btn.btn-primary
+          + Add Composition
+    .col-md-6
+  .row
+    .col-md-12
+      %table.table
+        %thead
+          %th #
+          %th Title
+          %th Schedule
+          %th Start Date
+          %th End Date
+          %th Client Name
+          %th Created At
+          %th Actions
+        %tbody
+          - @compositions.each do |composition|
+            %tr
+              %td
+                = composition.id
+              %td
+                = composition.title
+              %td
+                = composition.schedule
+              %td
+                = composition.start_date.strftime("%d/%m/%Y")
+              %td
+                = composition.end_date.strftime("%d/%m/%Y")
+              %td
+                = composition.client_name
+              %td
+                = composition.created_at
+              %td
+                %button.btn.btn-primary.btn-sm
+                  Edit
