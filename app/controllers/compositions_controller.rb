@@ -3,12 +3,24 @@ class CompositionsController < ApplicationController
     @compositions = Composition.all
   end
 
+  def new
+    @composition = Composition.new
+    @composition.asins.build
+  end
+
   def show
 
   end
 
   def create
-    @composition = Composition.create(composition_params)
+    accept_params = composition_params
+    asins_attributes = accept_params.delete(:asins_attributes)
+    @composition = Composition.create(accept_params)
+    if asins_attributes.present?
+      asins_attributes.each do |key, value|
+        Asin.create(value: value["value"], composition: @composition)
+      end
+    end
     redirect_to compositions_path
   end
 
@@ -18,11 +30,17 @@ class CompositionsController < ApplicationController
   def delete
   end
 
+  def generate
+    @composition = Composition.find(params[:id])
+    send_data @composition.generate, type: Mime[:csv], disposition: "attachment; filename='#{@composition.title}.csv'"
+  end
+
   private
 
   def composition_params
     params.require(:composition).permit(
-      :title, :schedule, :start_date, :end_date, :client_name
+      :title, :schedule, :start_date, :end_date, :client_name,
+      asins_attributes: [[:value]]
     )
   end
 

@@ -9,7 +9,7 @@
     .col-md-5
   .row
     .col-md-5
-      = simple_form_for Composition.new do |f|
+      = simple_form_for @composition do |f|
         .form-group
           = f.input :title, label: 'Title',  input_html: { id: 'title', class: 'form-control' }
         .form-group
@@ -22,6 +22,9 @@
           = f.text_field :end_date, id: 'end_date', type: 'text', class: 'form-control datepicker'
         .form-group
           = f.input :client_name, label: 'Client Name',  input_html: { id: 'client_name', class: 'form-control' }
+        = f.simple_fields_for :asins do |a|
+          .form-group
+            = a.input :value, label: 'ASIN',  input_html: { id: 'asin', class: 'form-control' }
         .form-group
           = f.submit 'Submit', class: 'btn btn-primary'
 

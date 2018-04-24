@@ -17,7 +17,7 @@
           %th Start Date
           %th End Date
           %th Client Name
-          %th Created At
+          %th ASIN
           %th Actions
         %tbody
           - @compositions.each do |composition|
@@ -29,13 +29,17 @@
               %td
                 = composition.schedule
               %td
-                = composition.start_date.strftime("%d/%m/%Y")
+                = composition.start_date.strftime("%d/%m/%Y") rescue nil
               %td
-                = composition.end_date.strftime("%d/%m/%Y")
+                = composition.end_date.strftime("%d/%m/%Y") rescue nil
               %td
                 = composition.client_name
               %td
-                = composition.created_at
+                = composition.asins.first.try(:value)
               %td
                 %button.btn.btn-primary.btn-sm
                   Edit
+              %td
+                %a{ href: "#{generate_composition_path(composition)}"}
+                  %button.btn.btn-danger.btn-sm
+                    Generate
