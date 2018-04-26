@@ -21,6 +21,12 @@
           %label End Date
           = f.text_field :end_date, id: 'end_date', type: 'text', class: 'form-control datepicker'
         .form-group
+          %label Price (Стоимость)
+          = f.text_field :price, id: 'price', type: 'text', class: 'form-control'
+        .form-group
+          %label Fee (Услуга)
+          = f.text_field :fee, id: 'fee', type: 'text', class: 'form-control'
+        .form-group
           = f.input :client_name, label: 'Client Name',  input_html: { id: 'client_name', class: 'form-control' }
         = f.simple_fields_for :asins do |a|
           .form-group

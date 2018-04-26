@@ -39,7 +39,7 @@ class CompositionsController < ApplicationController
 
   def composition_params
     params.require(:composition).permit(
-      :title, :schedule, :start_date, :end_date, :client_name,
+      :title, :schedule, :start_date, :end_date, :client_name, :price, :fee,
       asins_attributes: [[:value]]
     )
   end

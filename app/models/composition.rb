@@ -26,15 +26,15 @@ class Composition < ApplicationRecord
 
   def byu_out_info
     rows = []
-    rows << ["ASIN Товара", "B0786ZJ818", "URL"]
-    rows << ["График", schedule, "URL"]
-    rows << ["Сумма", "$758,95", "URL"]
+    rows << ['', "ASIN Товара", asins.first.try(:value), "URL", generated_url(asins.first.try(:value))]
+    rows << ['', "График", schedule, "URL", generated_url(asins.first.try(:value))]
+    rows << ['', "Сумма", "$758,95", "URL", generated_url(asins.first.try(:value))]
     rows
   end
 
   def date_rows
     rows = []
-    rows << ["ПН", "Дата выкупа", "Номер заказа", "Стоимость"]
+    rows << ["ПН", "Дата выкупа", "Номер заказа", "Стоимость", "Покупка", "ИНН", "Услуга", "Ключ", "Отзыв"]
     date = start_date
     scheduled = schedule.split('-').map(&:to_i)
     i = 0
@@ -42,7 +42,7 @@ class Composition < ApplicationRecord
     while date <= end_date
       if scheduled[i]
         for j in 1..scheduled[i] do
-          rows << [order_number, date.strftime("%d.%m.%Y")]
+          rows << [order_number, date.strftime("%d.%m.%Y"), '', price, '', '', fee, '', '']
           order_number += 1
         end
       end
@@ -50,6 +50,10 @@ class Composition < ApplicationRecord
       i += 1
     end
     rows
+  end
+
+  def generated_url asin, keywords = ""
+    "https://www.amazon.com/gp/aws/cart/add.html?&ASIN.1=#{asin}&Quantity.1=1&keywords=#{keywords}"
   end
 end
 
