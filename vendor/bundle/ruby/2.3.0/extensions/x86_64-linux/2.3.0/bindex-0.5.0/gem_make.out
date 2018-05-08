@@ -1,0 +1,15 @@
+current directory: /home/anthony/rails_projects/asin_creed/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+/usr/bin/ruby2.3 -r ./siteconf20180428-5205-8qvz3d.rb extconf.rb
+creating Makefile
+
+current directory: /home/anthony/rails_projects/asin_creed/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" clean
+
+current directory: /home/anthony/rails_projects/asin_creed/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR="
+compiling cruby.c
+linking shared-object bindex/cruby.so
+
+current directory: /home/anthony/rails_projects/asin_creed/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20180428-5205-1rpyliz/bindex

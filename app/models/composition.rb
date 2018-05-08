@@ -26,15 +26,21 @@ class Composition < ApplicationRecord
 
   def byu_out_info
     rows = []
-    rows << ['', "ASIN Товара", asins.first.try(:value), "URL", generated_url(asins.first.try(:value))]
-    rows << ['', "График", schedule, "URL", generated_url(asins.first.try(:value))]
-    rows << ['', "Сумма", "$758,95", "URL", generated_url(asins.first.try(:value))]
+    rows << ['', "ASIN", asins.first.try(:value)]
+    rows << ['', "График", schedule]
+    rows << ['', "Сумма"]
+    rows << ['', "Оплата"]
+    rows << ['', "URL", generated_url(asins.first.try(:value))]
+    rows << ['', "URL", generated_url(asins.first.try(:value))]
+    rows << ['', "URL", generated_url(asins.first.try(:value))]
+    rows << ['', "Линк на чат"]
+    rows << ['', "Заметка"]
     rows
   end
 
   def date_rows
     rows = []
-    rows << ["ПН", "Дата выкупа", "Номер заказа", "Стоимость", "Покупка", "ИНН", "Услуга", "Ключ", "Отзыв"]
+    rows << ["ПН", "Дата выкупа", "Номер заказа", "Стоимость", "Покупка", "ИНН", "Услуга", "Ключ", "Отзыв", '', 'Дата оплаты', 'Сумма', 'Выкупы', '5%', 'Услуга', 'Видео', 'Фото', 'Вопросы']
     date = start_date
     scheduled = schedule.split('-').map(&:to_i)
     i = 0
